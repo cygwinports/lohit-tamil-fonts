@@ -1,7 +1,7 @@
 inherit font
 
-NAME="font-lohit-tamil-ttf"
-VERSION=2.5.3
+NAME="lohit-tamil-fonts"
+VERSION=2.91.1
 RELEASE=1
 CATEGORY="X11"
 SUMMARY="Lohit Tamil font"
@@ -11,15 +11,19 @@ HOMEPAGE="https://fedorahosted.org/lohit/"
 SRC_URI="https://fedorahosted.org/releases/l/o/lohit/lohit-tamil-${VERSION}.tar.gz"
 SRC_DIR="lohit-tamil-${VERSION}"
 
+ARCH=noarch
+
+OBSOLETES="font-lohit-tamil-ttf"
+
 src_compile() {
 	lndirs
 	cd ${B}
-	cygmake
+	cygmake ttf
 }
 
 src_install() {
 	cd ${B}
-	fontinto TTF
+	fontinto ${NAME%-fonts}
 	dofont *.ttf
 
 	dofontconf *.conf
